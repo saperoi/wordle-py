@@ -1,12 +1,13 @@
 import random
 import time
-import requests
 import os
 import pyfiglet
 from colorama import init, Fore, Style
+import pero_fx
+import json
 
 class Wordle():
-    def __init__(self, hidden: list, max: int, name: str = "wordle", allowed: str = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN", hard: bool = False, colors: str = "dark"):
+    def __init__(self, hidden: list, max: int, name: str = "wordle", allowed: str = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN", hard: bool = False, colors: str = "text"):
         init()
         self.color_options = ["light", "dark", "colorblind", "colorblinddark",
         "text", "nerdle", "nerdlelight", "queerdle_accessible",
@@ -76,9 +77,9 @@ class Wordle():
                 if len(word) < length:
                     print("Guess is too short, please try again")
                     word = input()
-            
+
             # flagChar
-            
+
             flag01 = True
             for p in range(len(word)):
                 if word[p] not in self.allowed:
@@ -89,18 +90,18 @@ class Wordle():
                 word = input()
             else:
                 flagChar = True
-                
+
             # flagDict
-            
+
             if word in epsilon:
                 flagDict = True
             else:
                 flagDict = False
                 print("Invalid guess, please try again")
                 word = input()
-                
+
             # flagDeja
-            
+
             if guesslist == []:
                 flagDeja = True
             else:
@@ -121,7 +122,7 @@ class Wordle():
             w = list(w)
             v = list(v)
             l = list(word)
-            
+
             if self.mode == False:
                 flagHard = True
             elif w == []:
@@ -167,7 +168,7 @@ class Wordle():
         print()
         print()
         print(self.name + " " + str(self.guesses) + "/" + str(self.maxguesses) + "   " + str(self.timespent) + " s")
-        print(ArrToStrSpaces(self.guessnums, "/"))
+        print(pero_fx.ArrToStrSpaces(self.guessnums, "/"))
         for n in range(len(e)):
             print(e[n])
         print("Try for yourself at <https://github.com/saperoi/misc/tree/main/python/wordle>")
@@ -182,9 +183,9 @@ class Wordle():
         for _ in range(self.wordcount):
             sect = sec[_]
             secl = list(sect)
-            tempverdict = nCopies(len(sect), "")
-            tempcolorverdict = nCopies(len(sect), "")
-            greens = nCopies(len(sect), False)
+            tempverdict = pero_fx.nCopies(len(sect), "")
+            tempcolorverdict = pero_fx.nCopies(len(sect), "")
+            greens = pero_fx.nCopies(len(sect), False)
 
             for j in range(len(sect)):
                 if guessl[j] == secl[j]:
@@ -201,22 +202,22 @@ class Wordle():
                             tempcolorverdict[j] = self.FORES[1] + "y" + Style.RESET_ALL
                             tempverdict[j] = "y"
                             secl[k] = "-"
-                            sect, secl = copyfix(secl)
+                            sect, secl = pero_fx.copyfix(secl)
             for j in range(len(sect)):
                 if tempverdict[j] == "":
                     tempcolorverdict[j] = self.FORES[0] + "-" + Style.RESET_ALL
                     tempverdict[j] = "-"
-            arrverdict.append(copyfix(tempverdict, True))
+            arrverdict.append(pero_fx.copyfix(tempverdict, True))
             if _ != self.wordcount - 1:
                 tempverdict.append(" ")
                 tempcolorverdict.append(" ")
-            tempverdict = copyfix(tempverdict, True)
-            tempcolorverdict = copyfix(tempcolorverdict, True)
+            tempverdict = pero_fx.copyfix(tempverdict, True)
+            tempcolorverdict = pero_fx.copyfix(tempcolorverdict, True)
             verdict.append(tempverdict)
             colorverdict.append(tempcolorverdict)
-        colorverdict = ArrToStrSpaces(colorverdict)
-        verdict = ArrToStrSpaces(verdict)
-        
+        colorverdict = pero_fx.ArrToStrSpaces(colorverdict)
+        verdict = pero_fx.ArrToStrSpaces(verdict)
+
         return verdict, colorverdict, arrverdict
 
     def wordle(self, epsilon):
@@ -255,17 +256,17 @@ class Wordle():
             self.lastguess = (word, verdict)
             print(colorverdict)
             self.vflag = False
-            
+
             for j in range(len(arrverdict)):
                 if arrverdict[j] == SpecCorr[j]:
-                    sec[j] = copyfix(nCopies(len(sec[j]), "-"), True)
+                    sec[j] = pero_fx.copyfix(pero_fx.nCopies(len(sec[j]), "-"), True)
                     self.guessnums[j] = i
-                
+
             if sec == Blanks:
                 if self.wordcount != 1:
-                    print("You won! The was were: " + ArrToStrSpaces(self.secret))
+                    print("You won! The was were: " + pero_fx.ArrToStrSpaces(self.secret))
                 else:
-                    print("You won! The word was: " + ArrToStrSpaces(self.secret))
+                    print("You won! The word was: " + pero_fx.ArrToStrSpaces(self.secret))
                 self.timespent = round((time.time() - lasttime), 2)
                 print("You guessed it in " + str(i) + " guesses, and took " + str(self.timespent) + " seconds.")
                 self.vflag = True
@@ -275,52 +276,35 @@ class Wordle():
         if self.vflag == False:
             self.timespent = "/./"
             if self.wordcount != 1:
-                print("You lost :( The was were: " + ArrToStrSpaces(self.secret))
+                print("You lost :( The was were: " + pero_fx.ArrToStrSpaces(self.secret))
             else:
-                print("You lost :( The word was: " + ArrToStrSpaces(self.secret))
+                print("You lost :( The word was: " + pero_fx.ArrToStrSpaces(self.secret))
             self.guesses = "X"
         print()
         print("Share with your friends!")
         print("Emoji's might show up as  ⍰  but they're still copyable")
         self.emojify(emojis)
-        
-def secretWord(alpha, n, bool = False):
-    g = random.randint(0, n-1)
-    secret = alpha[g].lower()
-    if bool == False: return secret
-    return secret, g+1
 
-def copyfix(aw, bool = False):
-    av = ""
-    for z in range(len(aw)):
-        av += aw[z]
-    aw = list(av)
-    if bool == True: return av
-    return av, aw
-
-def getList(url):
-    r = requests.get(url)
-    urlf = open("temp.txt", "wb")
-    urlf.write(r.content)
-    urlf.close()
-    urlf = open("temp.txt", "r")
-    listi = urlf.readlines()
-    for i in range(len(listi)):
-        listi[i] = listi[i].replace("\n", "")
-    urlf.close()
-    os.remove("temp.txt")
-    return listi
-
-def ArrToStrSpaces(arr, stro = " "):
-    stri = ""
-    for i in range(len(arr)):
-        stri += str(arr[i])
-        if i != len(arr) - 1:
-            stri += stro
-    return stri
-
-def nCopies(n, copy):
-    res = []
-    for _ in range(n):
-        res.append(copy)
-    return res
+class Config():
+    def JSon(f):
+        f = json.loads(f.read())
+        _a = f['name']
+        _b = f['allowed_characters']
+        _c = f['max_guesses']
+        _d = f['num_words']
+        _e = pero_fx.getList(f['puzzle_words'])
+        if f['all_words'] == f['puzzle_words']:
+            _f = _e
+        else:
+            _f = pero_fx.getList(f['all_words'])
+        _g = f['colors']
+        _h = f['hard_mode']
+        if _h == "hard" or _h == "Hard" or _h == "HARD"  or _h == "TRUE" or _h == "true" or _h == "True" or _h == True:
+            _h = True
+        else:
+            _h = False
+        _i = []
+        for i in range(int(_d)):
+            _i.append(pero_fx.secretWord(_e, len(_e), False))
+        game = Wordle(hidden = _i, max = _c, name = _a, allowed = _b, hard = _h, colors = _g)
+        game.wordle(_f)

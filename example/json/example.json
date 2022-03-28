@@ -1,0 +1,10 @@
+{
+  "name": "example",
+  "allowed_characters": "abcdefghijklmnopqrstuvwxyz",
+  "max_guesses": 6,
+  "num_words": 1,
+  "puzzle_words": "https://example.test/file.txt",
+  "all_words": "https://test.example/file.txt",
+  "colors": "dark",
+  "hard_mode": "False"
+}

@@ -1,0 +1,6 @@
+build/
+dist/
+tests/
+wordle_saperoi.egg-info/
+wordle-engine/__pycache__/
+.git/

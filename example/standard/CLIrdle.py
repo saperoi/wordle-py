@@ -1,4 +1,4 @@
-import engine as w
+import ../wordle-engine/engine as w
 
 alphalink = "https://raw.githubusercontent.com/saperoi/misc/master/src_files/dict/basic.txt"
 gammalink = "https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt"
@@ -15,7 +15,7 @@ def setup():
         while len(appo) != len(hidden[0]):
             appo = w.secretWord(alpha, len(alpha), False)
         hidden.append(appo)
-        
+
     maxg = 5 + wordcount + max(0, len(hidden[0]) - 5)
     wordle = w.Wordle(hidden, maxg, name, colors = "colorblinddark")
     wordle.wordle(gamma)

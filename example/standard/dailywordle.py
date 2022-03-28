@@ -1,4 +1,4 @@
-import engine as w
+import ../wordle-engine/engine as w
 import datetime
 
 alphalink = "https://cdn.discordapp.com/attachments/947100010959470595/954346459283734528/nyt_words_alpha.txt"

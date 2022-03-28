@@ -1,4 +1,4 @@
-import engine as w
+import ../wordle-engine/engine as w
 
 name = "numberdle"
 

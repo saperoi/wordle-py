@@ -1,4 +1,4 @@
-import engine as w
+import ../wordle-engine/engine as w
 
 alphalink = "https://example.com/alpha.txt"
 gammalink = "https://example.com/gamma.txt"

@@ -1,4 +1,4 @@
-import engine as w
+import ../wordle-engine/engine as w
 
 alphalink = "https://raw.githubusercontent.com/saperoi/misc/master/src_files/dict/basic.txt"
 betalink = "https://raw.githubusercontent.com/saperoi/misc/master/src_files/dict/basic256.txt"
