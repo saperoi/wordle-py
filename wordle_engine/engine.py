@@ -1,7 +1,7 @@
 import time
 import pyfiglet
 from colorama import init, Fore, Style
-import pero_fx
+from .pero_fx import pero_fx
 import json
 
 class Wordle():
