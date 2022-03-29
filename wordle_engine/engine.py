@@ -1,6 +1,4 @@
-import random
 import time
-import os
 import pyfiglet
 from colorama import init, Fore, Style
 import pero_fx

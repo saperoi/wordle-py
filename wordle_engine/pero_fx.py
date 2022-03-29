@@ -1,4 +1,6 @@
 import requests
+import random
+import os
 
 def secretWord(alpha, n, bool = False):
     g = random.randint(0, n-1)

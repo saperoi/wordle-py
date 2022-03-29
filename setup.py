@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="wordle_saperoi",
-    version="0.1.1",
+    version="0.1.0",
     author="Saperoi",
     author_email="uesugi.sapero@gmail.com",
     description="A python-based customizable Wordle engine",
