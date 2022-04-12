@@ -23,6 +23,8 @@ class Wordle():
         ]
         self.FORES = [Fore.WHITE, Fore.YELLOW, Fore.GREEN]
         self.secret = hidden
+        for _à_ in range(len(self.secret)):
+            self.secret[_à_] = self.secret[_à_].lower()
         self.wordcount = len(hidden)
         self.maxguesses = max
         self.allowed = allowed
