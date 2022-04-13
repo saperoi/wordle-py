@@ -1,4 +1,4 @@
-import ../wordle-engine/engine as w
+import wordle_engine as w
 
 alphalink = "https://raw.githubusercontent.com/saperoi/misc/master/src_files/dict/basic.txt"
 gammalink = "https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt"

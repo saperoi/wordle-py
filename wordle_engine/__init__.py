@@ -1,2 +1,1 @@
-from .engine import Wordle, Config
-from .pero_fx import secretWord, copyfix, getList, ArrToStrSpaces, nCopies
+from .engine import Wordle, Config, secretWord, copyfix, nCopies, getList, ArrToStrSpaces

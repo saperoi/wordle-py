@@ -1,4 +1,4 @@
-import ../wordle-engine/engine as w
+import wordle_engine as w
 
 alphalink = "https://example.com/alpha.txt" # LINK TO A TXT LIST OF POSSIBLE SECRET WORDS
 gammalink = "https://example.com/gamma.txt" # LINK TO A TXT LIST OF GUESSABLE WORDS, CAN BE SAME AS ALPHA

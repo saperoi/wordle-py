@@ -1,4 +1,4 @@
-import ../wordle-engine/engine as w
+import wordle_engine as w
 
 alphalink = "https://cdn.discordapp.com/attachments/947100010959470595/954346459283734528/nyt_words_alpha.txt"
 gammalink = "https://cdn.discordapp.com/attachments/947100010959470595/954784115444547634/nyt_words_gamma.txt"
